@@ -22,9 +22,14 @@ steps:
 
 - script: | 
     npm test
-    ls
-    pwd
   displayName: 'Mocha testing'
+  
+- task: CmdLine@2
+  inputs:
+    script: |
+      ls 
+      pwd
+      whoami
 
 - script: |
     npm install
