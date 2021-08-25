@@ -23,7 +23,7 @@ steps:
 - script: |
     npm install
     npm test
-    mocha test --reporter mocha-junit-reporter
+    mocha tests/**/*.js --reporter mocha-junit-reporter
   displayName: 'Mocha testing'
 
 - script: |
