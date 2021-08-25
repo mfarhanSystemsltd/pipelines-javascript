@@ -21,6 +21,7 @@ steps:
 
 - script: |
     npm test
+    mocha test --reporter mocha-junit-reporter
   displayName: 'Mocha testing'
 
 - script: |
