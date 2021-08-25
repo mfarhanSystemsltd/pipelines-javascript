@@ -22,6 +22,8 @@ steps:
 
 - script: | 
     npm test
+    ls
+    pwd
   displayName: 'Mocha testing'
 
 - script: |
