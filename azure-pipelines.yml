@@ -16,6 +16,10 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    npm install --global mocha
+  displayName: 'Mocha installation'
+
+- script: |
     npm test
   displayName: 'Mocha testing'
 
