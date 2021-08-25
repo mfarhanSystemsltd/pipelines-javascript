@@ -20,13 +20,12 @@ steps:
     npm install -g mocha-junit-reporter
   displayName: 'Mocha and Junit installation'
 
-- script: |
-    npm install
+- script: | 
     npm test
-    mocha tests/**/*.js --reporter mocha-junit-reporter
   displayName: 'Mocha testing'
 
 - script: |
+    npm install
     npm run build
   displayName: 'npm install and build'
 
