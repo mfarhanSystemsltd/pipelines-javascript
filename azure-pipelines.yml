@@ -17,7 +17,8 @@ steps:
 
 - script: |
     npm install --global mocha
-  displayName: 'Mocha installation'
+    npm install -g mocha-junit-reporter
+  displayName: 'Mocha and Junit installation'
 
 - script: |
     npm install
