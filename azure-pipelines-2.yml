@@ -22,7 +22,7 @@ stages:
 
     - task: NodeTool@0
       inputs:
-        versionSpec: '12.x'
+        versionSpec: '10.x'
       displayName: 'Install Node.js'
 
     - script: |
@@ -45,9 +45,10 @@ stages:
         reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
 
     - task: ArchiveFiles@2
+      displayName: 'Archive files'
       inputs:
           rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-          includeRootFolder: true
+          includeRootFolder: false
           archiveType: 'zip'
           archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
           replaceExistingArchive: true
