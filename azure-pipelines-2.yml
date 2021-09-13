@@ -12,38 +12,57 @@ pool:
 stages:
 - stage: Build
   displayName: Build stage
+  
   jobs:
   - job: Build
     displayName: Build
     pool:
       vmImage: 'ubuntu-latest'
-
+   
+  - job: installNodeJS
+    displayName: Installing Node JS
     steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Using Node.js 10.x'
+  
+  - job: buildRun
+    displayName: Installing Packages and running the Build
+    steps:     
+      - script: |
+          ls
+          npm install
+          npm run build
+          ls
+          pwd
+        displayName: 'npm install and build'
 
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '10.x'
-      displayName: 'Install Node.js'
 
-    - script: |
-        ls
-        npm install
-        npm run build
-        ls
-        pwd
-      displayName: 'npm install and build'
-
+- stage: Publish
+  displayName: Publishing Results  
+  
+  jobs:
+  - job: publishTestResult
+    displayName: Publshing test results
+    steps:     
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: '**/TEST-*.xml'
-        
+     
+  - job: publishCorberturaResult
+    displayName: Publshing coverage report
+    steps:          
     - task: PublishCodeCoverageResults@1
       inputs:
         codeCoverageTool: 'Cobertura'
         summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
         reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
-
+ 
+  - job: archiveCode
+    displayName: Archiving the code
+    steps:          
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
@@ -52,7 +71,10 @@ stages:
           archiveType: 'zip'
           archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
           replaceExistingArchive: true
-
+  
+  - job: publishCode
+    displayName: Publishing the code
+    steps:
     - task: PublishPipelineArtifact@1
       inputs:
           targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
