@@ -39,10 +39,6 @@ stages:
         displayName: 'npm install and build'
 
 
-- stage: Publish
-  displayName: Publishing Results  
-  
-  jobs:
   - job: publishTestResult
     displayName: Publshing test results
     steps:     
