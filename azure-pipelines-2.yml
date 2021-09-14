@@ -82,4 +82,4 @@ stages:
           serviceConnectionEndpoint: 'SNYK'
           testType: 'app'
           monitorWhen: 'always'
-          failOnIssues: true
+          failOnIssues: false
