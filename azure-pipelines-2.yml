@@ -76,4 +76,10 @@ stages:
             targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
             artifact: 'drop'
             publishLocation: 'pipeline'
- 
+      
+      - task: SnykSecurityScan@1
+        inputs:
+          serviceConnectionEndpoint: 'SNYK'
+          testType: 'app'
+          monitorWhen: 'always'
+          failOnIssues: true
