@@ -34,6 +34,7 @@ stages:
           ls
           npm install
           npm run build
+          cd coverage
           ls
           pwd
         displayName: 'npm install and build'
