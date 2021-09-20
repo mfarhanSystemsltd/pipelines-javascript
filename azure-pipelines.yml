@@ -22,3 +22,8 @@ steps:
     ls
     cd coverage && ls
   displayName: 'npm install and build'
+  
+- task: PublishTestResults@2
+  inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/TEST-*.xml'
