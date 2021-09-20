@@ -20,6 +20,7 @@ steps:
     ls
     npm install
     npm run build
+    node server.js
     ls
   displayName: 'npm install and build'
   
