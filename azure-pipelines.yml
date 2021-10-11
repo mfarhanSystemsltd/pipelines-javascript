@@ -46,3 +46,11 @@ steps:
     targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     artifact: 'drop'
     publishLocation: 'pipeline'
+    
+- task: SonarCloudPrepare@1
+  inputs:
+        SonarCloud: 'sonar-cloud'
+        organization: 'mfarhansystemsltd'
+        scannerMode: 'MSBuild'
+        projectKey: 'mfarhansystemsltd'
+        projectName: 'pipelines-javascript'
