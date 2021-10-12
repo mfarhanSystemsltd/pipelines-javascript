@@ -54,4 +54,6 @@ steps:
         scannerMode: 'MSBuild'
         projectKey: 'mfarhansystemsltd'
         projectName: 'pipelines-javascript'
-- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
